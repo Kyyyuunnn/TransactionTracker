@@ -1,0 +1,8 @@
+please use the following command in your command prompt.
+(used for dependencies needed)
+
+
+pip install pandas openpyxl python-dotenv matplotlib seaborn
+
+OR pip install -r requirements.txt
+^^
