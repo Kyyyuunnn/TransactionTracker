@@ -3,11 +3,6 @@ import pandas as pd
 
 df = loadExcel()
 
-# #vendorList = [] could track later on
-# amtList = []
-# categoryList = []
-# dateList = []
-
 # removing rows with blanks
 if df is not None:
     df = df[~(
@@ -16,8 +11,9 @@ if df is not None:
     )]
 
 
-# make sure each category is the correct format/type
+# checking columns
 df["Amount"] = pd.to_numeric(df["Amount"], errors = "coerce")
+df["Category"] = df["Category"].apply(lambda x: "Miscellaneous" if pd.isna(x) or str(x).strip() == "" else x)
 
 
 # grabbing the amounts and round total (by 2 cents)
@@ -30,6 +26,5 @@ roundedTotal = round(total, 2)
 # Category totals
 categoryTotals = df.dropna(subset=["Category", "Amount"]).groupby("Category")["Amount"].sum().round(2)
 
-print(categoryTotals)
 
 
