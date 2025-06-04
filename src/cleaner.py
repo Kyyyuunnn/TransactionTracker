@@ -1,6 +1,6 @@
 from config import loadExcel
 import pandas as pd
-import matplot.lib.pyplot as plt
+import matplotlib.pyplot as plt
 
 df = loadExcel()
 
@@ -29,5 +29,12 @@ roundedTotal = round(total, 2)
 # Category totals
 categoryTotals = df.dropna(subset=["Category", "Amount"]).groupby("Category")["Amount"].sum().round(2)
 
-# graphics for the category (pie chart and totals) WIP
+# graphics for the category (pie chart and totals) 
+print(f"Total Spendings: {roundedTotal}")
+print(f"Category Breakdown")
+print(categoryTotals)
+
+categoryTotals.plot.pie
+plt.title("Total Spendings by Category")
+plt.show
 
